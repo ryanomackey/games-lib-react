@@ -6,13 +6,14 @@ import AddGameModal from '../components/add-game-modal.js';
 
 const customStyles = {
   content : {
-    top                   : '30%',
+    top                   : '50%',
     left                  : '59%',
     right                 : 'auto',
     bottom                : 'auto',
     marginRight           : '-50%',
     transform             : 'translate(-50%, -50%)',
-    width: '50%'
+    width: '60%',
+    height: '85%'
   }
 };
 

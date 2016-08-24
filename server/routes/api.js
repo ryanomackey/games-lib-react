@@ -3,11 +3,12 @@
 var express = require('express');
 var router = express.Router();
 var https = require('https');
-var querystring = require('querystring');
 
 router.get('/search', function(req, res) {
 
-  var path = '/api/search/?api_key=' + process.env.GIANT_BOMB + '&format=json&query=' + querystring.escape(req.query.query);
+  var query = encodeURI(req.query.query);
+
+  var path = '/api/search/?api_key=' + process.env.GIANT_BOMB + '&format=json&limit=10&resources=game&query=' + query;
 
   var options = {
     hostname: 'www.giantbomb.com',
