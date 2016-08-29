@@ -3,6 +3,8 @@
 import React from 'react';
 import Modal from 'react-modal';
 import AddGameModal from '../components/add-game-modal.js';
+import Game from '../components/game.js';
+import LibraryStore from '../stores/library-store.js';
 
 const customStyles = {
   content : {
@@ -23,11 +25,13 @@ export default class LibraryPage extends React.Component {
     super();
 
     this.state = {
-      modalIsOpen:false
+      modalIsOpen:false,
+      library: LibraryStore._getAll()
     };
 
     this.openModal = this.openModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
+    this._getLibrary = this._getLibrary.bind(this);
   }
 
   openModal() {
@@ -38,9 +42,25 @@ export default class LibraryPage extends React.Component {
     this.setState({modalIsOpen:false});
   }
 
+  componentWillMount() {
+    LibraryStore.on('change', () => this._getLibrary);
+  }
+
+  componentWillUnmount() {
+    LibraryStore.removeListener('change', () => this._getLibrary);
+  }
+
+  _getLibrary () {
+    this.setState({
+      library: LibraryStore._getAll()
+    });
+  }
+
   render() {
+    const library = this._getLibrary();
     return (
       <div className="container-fluid">
+
         <div className="row">
           <div className="col s11">
             <h1 className="center-align">Library</h1>
@@ -51,14 +71,29 @@ export default class LibraryPage extends React.Component {
             </a>
           </div>
         </div>
+
+        <div className="container-fluid">
+          <div className="row">
+            <div style={{display:'flex', flexWrap:'wrap'}}>
+              {library}
+            </div>
+          </div>
+        </div>
+
         <Modal
           isOpen={this.state.modalIsOpen}
           onAfterOpen={this.afterOpenModal}
           onRequestClose={this.closeModal}
           style={customStyles} >
-          <AddGameModal/>
+          <AddGameModal closeModal={this.closeModal}/>
         </Modal>
       </div>
     )
+  }
+
+  _getLibrary() {
+    return this.state.library.map((game) => {
+      return <Game {...game} key={game.id}/>
+    })
   }
 }

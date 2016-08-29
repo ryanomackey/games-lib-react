@@ -22,7 +22,9 @@ export default class AddGameModal extends React.Component {
         <AddGameSearch submitSearch={this._submitSearch} />
         <div className="container-fluid" style={{marginTop:'2%'}}>
           <div className="row">
-            {searchResults}
+            <div style={{display:'flex', flexWrap:'wrap'}}>
+              {searchResults}
+            </div>
           </div>
         </div>
       </div>
@@ -43,7 +45,7 @@ export default class AddGameModal extends React.Component {
 
   _getSearchResults() {
     return this.state.searchResults.map( (searchResult) => {
-      return <SearchResult {...searchResult} key={searchResult.id} />
+      return <SearchResult {...searchResult} key={searchResult.id} closeModal={this.props.closeModal}/>
     });
   }
 

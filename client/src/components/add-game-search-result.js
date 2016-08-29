@@ -1,21 +1,33 @@
 'use strict';
 
 import React from 'react';
+import LibraryStore from '../stores/library-store';
 
 export default class SearchResult extends React.Component {
+  constructor() {
+    super();
+  }
   render() {
+    if (this.props.image) {
+      var image_url = 'http' + this.props.image.small_url.substr(5);
+    } else {
+      image_url = undefined;
+    }
     return (
-      <div className="col s4">
-        <div className="card" style={{height:'600px'}}>
+      <div className="col s4" style={{marginLeft:'0'}}>
+        <div className="card">
           <div className="card-image teal">
-            <img style={{width:'100%',height:'300px'}} src={this.props.image.medium_url} />
-            <span className="card-title">{this.props.name}</span>
+            <img alt={this.props.name} src={image_url} />
           </div>
-          <div className="card-content" style={{height:'225px'}}>
+          <div className="card-content">
             <p>{this.props.deck}</p>
           </div>
           <div className="card-action">
-            <a href="#">This is a link</a>
+            <a href="#" onClick={() => {
+              this.props.closeModal();
+              LibraryStore._addToLibrary(this.props.id, this.props.name, image_url, this.props.deck)
+            }
+          }>Add to library</a>
           </div>
         </div>
       </div>

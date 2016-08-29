@@ -16,6 +16,9 @@ export default class Layout extends React.Component {
           <li>
             <Link to="/library"><i className="material-icons">dashboard</i>Library</Link>
           </li>
+          <li>
+            <Link to='/account'><i className="material-icons">person</i>Account</Link>
+          </li>
         </ul>
         {this.props.children}
       </div>
