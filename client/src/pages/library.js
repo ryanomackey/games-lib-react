@@ -9,7 +9,7 @@ import LibraryStore from '../stores/library-store.js';
 const customStyles = {
   content : {
     top                   : '50%',
-    left                  : '59%',
+    left                  : '50%',
     right                 : 'auto',
     bottom                : 'auto',
     marginRight           : '-50%',
@@ -59,34 +59,29 @@ export default class LibraryPage extends React.Component {
   render() {
     const library = this._getLibrary();
     return (
-      <div className="container-fluid">
+      <div className="container">
 
         <div className="row">
-          <div className="col s11">
-            <h1 className="center-align">Library</h1>
+          <div className="col s10">
+            <h3 style={{marginTop:0}}>Library</h3>
           </div>
-          <div className="col s1 valign-wrapper" style={{height:'125.69px'}}>
+          <div className="col s2 right-align">
             <a className="btn-floating btn-large waves-effect waves-light teal valign" onClick={this.openModal} style={{margin:'auto'}}>
               <i className="material-icons">add</i>
             </a>
           </div>
         </div>
 
-        <div className="container-fluid">
-          <div className="row">
-            <div style={{display:'flex', flexWrap:'wrap'}}>
-              {library}
-            </div>
+        <div className="row">
+          <div style={{display:'flex', flexWrap:'wrap'}}>
+            {library}
           </div>
         </div>
 
-        <Modal
-          isOpen={this.state.modalIsOpen}
-          onAfterOpen={this.afterOpenModal}
-          onRequestClose={this.closeModal}
-          style={customStyles} >
+        <Modal isOpen={this.state.modalIsOpen} onAfterOpen={this.afterOpenModal} onRequestClose={this.closeModal} style={customStyles} >
           <AddGameModal closeModal={this.closeModal}/>
         </Modal>
+
       </div>
     )
   }

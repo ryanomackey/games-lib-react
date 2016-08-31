@@ -14,7 +14,7 @@ export default class SearchResult extends React.Component {
       image_url = undefined;
     }
     return (
-      <div className="col s4" style={{marginLeft:'0'}}>
+      <div className="col s6 l4" style={{marginLeft:'0'}}>
         <div className="card">
           <div className="card-image teal">
             <img alt={this.props.name} src={image_url} />

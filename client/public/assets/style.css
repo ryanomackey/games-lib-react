@@ -1,13 +1,4 @@
-html {
-  padding-left: 300px;
-}
-
-@media only screen and (max-width : 992px) {
-  html {
-    padding-left: 0;
-  }
-}
-
-.library_game {
-  margin-left:0;
+#menu {
+  position:relative;
+  left: 50;
 }

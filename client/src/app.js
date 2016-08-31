@@ -3,6 +3,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import jQuery from 'jquery';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+
+import injectTapEventPlugin from 'react-tap-event-plugin';
+
+injectTapEventPlugin();
 
 import {hashHistory, Router, Route, Redirect} from 'react-router';
 
@@ -12,13 +17,15 @@ import LibraryPage from './pages/library';
 import AccountPage from './pages/account';
 
 const app = (
-  <Router history={hashHistory}>
-    <Redirect from="/" to="/library" />
-    <Route path="/" component={Layout}>
-      <Route path="library" component={LibraryPage} />
-      <Route path="account" component={AccountPage} />
-    </Route>
-  </Router>
+  <MuiThemeProvider>
+    <Router history={hashHistory}>
+      <Redirect from="/" to="/library" />
+      <Route path="/" component={Layout}>
+        <Route path="library" component={LibraryPage} />
+        <Route path="account" component={AccountPage} />
+      </Route>
+    </Router>
+  </MuiThemeProvider>
 )
 
 jQuery(function() {

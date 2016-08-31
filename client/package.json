@@ -42,9 +42,12 @@
     "react-dom": "^15.0.1",
     "react-modal": "^1.4.0",
     "react-router": "^2.2.2",
+    "react-tap-event-plugin": "^1.0.0",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0",
     "watchify": "^3.7.0"
   },
-  "dependencies": {}
+  "dependencies": {
+    "material-ui": "^0.15.4"
+  }
 }
