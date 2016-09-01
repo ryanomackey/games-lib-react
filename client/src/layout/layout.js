@@ -4,6 +4,7 @@ import React from 'react';
 import {Link} from 'react-router';
 import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
+import AppBar from 'material-ui/AppBar';
 
 export default class Layout extends React.Component {
 
@@ -26,6 +27,7 @@ export default class Layout extends React.Component {
     return (
       <div>
         <Drawer docked={false} width={350} open={this.state.open} onRequestChange={(open) => this.setState({open})}>
+          <AppBar title="Menu"/>
           <Link to="/library">
             <MenuItem onTouchTap={this.handleClose}>
               <div className="valign-wrapper">
@@ -43,14 +45,16 @@ export default class Layout extends React.Component {
             </MenuItem>
           </Link>
         </Drawer>
-        <nav style={{marginBottom:'2.5%'}}>
-          <div className="nav-wrapper blue-grey">
-            <a href="#" className="brand-logo center">games.lib</a>
-            <ul id="nav-mobile" className="left">
-              <li onTouchTap={this.handleToggle}><a className="waves-effect waves-light btn">Menu</a></li>
-            </ul>
-          </div>
-        </nav>
+        <div className="navbar-fixed" style={{marginBottom:'2.5%'}}>
+          <nav style={{marginBottom:'2.5%'}}>
+            <div className="nav-wrapper blue-grey">
+              <a href="#" className="brand-logo center">games.lib</a>
+              <ul id="nav-mobile" className="left">
+                <li onTouchTap={this.handleToggle}><a className="waves-effect waves-light btn">Menu</a></li>
+              </ul>
+            </div>
+          </nav>
+        </div>
         {this.props.children}
       </div>
     )

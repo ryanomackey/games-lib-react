@@ -63,7 +63,7 @@ export default class LibraryPage extends React.Component {
 
         <div className="row">
           <div className="col s10">
-            <h3 style={{marginTop:0}}>Library</h3>
+            <h3 className="valign" style={{margin:0}}>Library</h3>
           </div>
           <div className="col s2 right-align">
             <a className="btn-floating btn-large waves-effect waves-light teal valign" onClick={this.openModal} style={{margin:'auto'}}>
